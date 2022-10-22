@@ -17,6 +17,7 @@ from utils import (
     get_all_h_param_comb,
     tune_and_save,
 )
+
 from joblib import dump, load
 
 train_frac, dev_frac, test_frac = 0.8, 0.1, 0.1
@@ -40,6 +41,12 @@ data, label = preprocess_digits(digits)
 # housekeeping
 del digits
 
+metric=metrics.accuracy_score
+
+r_cv=5
+results={}
+
+for n in range
 
 x_train, y_train, x_dev, y_dev, x_test, y_test = train_dev_test_split(
     data, label, train_frac, dev_frac
@@ -47,28 +54,41 @@ x_train, y_train, x_dev, y_dev, x_test, y_test = train_dev_test_split(
 
 # PART: Define the model
 # Create a classifier: a support vector classifier
-clf = svm.SVC()
-# define the evaluation metric
-metric = metrics.accuracy_score
+model_of_choice=[svm.SVC()]
+for clf in model_of_choice:
+    # define the evaluation metric
+    metric = metrics.accuracy_score
+    
+    
+    actual_model_path = tune_and_save(
+        clf, x_train, y_train, x_dev, y_dev, metric, h_param_comb, model_path=None
+    )
+    
+    
+    # 2. load the best_model
+    best_model = load(actual_model_path)
+    
+    # PART: Get test set predictions
+    # Predict the value of the digit on the test subset
+    predicted = best_model.predict(x_test)
+    if not clf_name in results:
+        results['clf_name'][n]- metric(y_pred-predicted, y_true-y_test)
+    pred_image_viz(x_test, predicted)
+    
+    # 4. report the test set accurancy with that best model.
+    # PART: Compute evaluation metrics
+    print(
+        f"Classification report for classifier {clf}:\n"
+        f"{metrics.classification_report(y_test, predicted)}\n"
+    )
 
+from sklearn import tree
+from sklearn.tree import DecisionTreeClassifier
 
-actual_model_path = tune_and_save(
-    clf, x_train, y_train, x_dev, y_dev, metric, h_param_comb, model_path=None
-)
-
-
-# 2. load the best_model
-best_model = load(actual_model_path)
-
-# PART: Get test set predictions
-# Predict the value of the digit on the test subset
-predicted = best_model.predict(x_test)
-
-pred_image_viz(x_test, predicted)
-
-# 4. report the test set accurancy with that best model.
-# PART: Compute evaluation metrics
+clf2=DecisionTreeClassifier()
+clf2=clf2.fit(x_train,y_train)
+predicted_dt=clf2.predict(x_test)
 print(
-    f"Classification report for classifier {clf}:\n"
+    f"Classification report for classifier {clf2}:\n"
     f"{metrics.classification_report(y_test, predicted)}\n"
 )

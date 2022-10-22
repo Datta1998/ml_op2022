@@ -1,4 +1,4 @@
-mport matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from joblib import dump
 from sklearn import svm
@@ -112,5 +112,4 @@ def tune_and_save(clf, x_train, y_train, x_dev, y_dev, metric, h_param_comb, mod
     print("Best Metric on Dev was:{}".format(best_metric))
 
     return model_path
-Footer
 
