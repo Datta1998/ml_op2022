@@ -72,9 +72,9 @@ for i in range(0,5):
     clf.fit(X_train_arr[i], y_train_arr[i])
     predicted_dev = clf.predict(X_dev_arr[i])
     cur_acc=metrics.accuracy_score(y_pred=predicted_dev, y_true=y_dev_arr[i])
-    print(cur_acc)
+    #print(cur_acc)
     cur_acc1.append(cur_acc)
-    print(cur_acc1)
+    #print(cur_acc1)
 
 
 
@@ -94,9 +94,9 @@ for i in range(5):
     clf1.fit(X_train_arr[i], y_train_arr[i])
     predicted_dev = clf1.predict(X_dev_arr[i])
     dtcur_acc=metrics.accuracy_score(y_pred=predicted_dev, y_true=y_dev_arr[i])
-    print(dtcur_acc)
+    #print(dtcur_acc)
     dtcur_acc1.append(dtcur_acc)
-    print(dtcur_acc1)
+    #print(dtcur_acc1)
 
 
 dt_acc.append(dtcur_acc1)
