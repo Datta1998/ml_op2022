@@ -20,8 +20,8 @@ def sum():
     y = request.json['y']
     z = x + y 
     return jsonify({'sum':z})  
-'''
+
 if __name__ == '__main__':
     app.run(debug=True)
-'''
+
 
