@@ -1,16 +1,25 @@
 from flask import Flask
+from flask import request
+from flask import jsonify
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return "Hello, World!"
+@app.route("/")
+def hello_world():
+    return "<!-- hello --> <b> Hello, World!</b>"
 
-@app.route('/sum')
+# get x and y somehow    
+#     - query parameter
+#     - get call / methods
+#     - post call / methods ** 
 
-def sum(x,y):
-    z=x+y
-    return z    
+@app.route("/sum", methods=['POST'])
+def sum():
+    print(request.json)
+    x = request.json['x']
+    y = request.json['y']
+    z = x + y 
+    return jsonify({'sum':z})  
 
 if __name__ == '__main__':
     app.run(debug=True)
