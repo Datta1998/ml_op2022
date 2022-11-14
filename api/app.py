@@ -3,7 +3,7 @@ from flask import request
 from joblib import load
 
 app = Flask(__name__)
-model_path = "svm_gamma=0.001_C=0.7.joblib"
+model_path = "svm_gamma=0.001_C=0.5.joblib"
 model = load(model_path)
 
 @app.route("/")
@@ -22,3 +22,7 @@ def predict_digit():
         return "Same Class Images are found here"
     else:
         return "Same Class Images are not found here"    
+
+
+if __name__=="main":
+    app.run(host="0.0.0.0",port=5000)
