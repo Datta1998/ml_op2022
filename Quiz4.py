@@ -31,10 +31,10 @@ svm_accuracy = []
 # 2. For every combination-of-hyper-parameter values
 for i in range(0,5):
     X_train, X_dev_test, y_train, y_dev_test = train_test_split(
-    data, digits.target, test_size=dev_test_frac, shuffle=True
+    data, digits.target, test_size=dev_test_frac, shuffle=True, random_state=50
     )
     X_test, X_dev, y_test, y_dev = train_test_split(
-    X_dev_test, y_dev_test, test_size=(dev_frac)/dev_test_frac, shuffle=True
+    X_dev_test, y_dev_test, test_size=(dev_frac)/dev_test_frac, shuffle=True, random_state=
     )
     for cur_h_params in h_param_comb:
 
